@@ -2,6 +2,9 @@ name: Build dotnet app
 run-name: ${{ github.actor }} está testando o GitHub Actions 🚀
 
 on:
+  push:
+    branches:
+      - main
   schedule:
     - cron: '0 * * * *'
 
@@ -29,8 +32,7 @@ jobs:
           node-version: '14'
       - run: echo "Node.js foi configurado!"
 
-
-      - name: Executar script
+      - name: Executar script personalizado
         run: |
           echo "Criando um arquivo de log..."
           echo "Este é um arquivo de log criado durante a execução do workflow do GitHub Actions." > meu_arquivo_de_log.txt
