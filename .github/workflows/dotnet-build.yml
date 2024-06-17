@@ -1,0 +1,43 @@
+name: Build dotnet app
+run-name: ${{ github.actor }} está testando o GitHub Actions 🚀
+
+on:
+  schedule:
+    - cron: '0 * * * *'
+
+jobs:
+  Explorar-GitHub-Actions:
+    runs-on: ubuntu-latest
+
+    steps:
+      - run: echo "🎉 O job foi acionado automaticamente por um evento de ${{ github.event_name }}."
+      - run: echo "🐧 Este job está agora rodando em um servidor ${{ runner.os }} hospedado pelo GitHub!"
+      - run: echo "🔎 O nome do seu branch é ${{ github.ref }} e seu repositório é ${{ github.repository }}."
+      
+      - name: Fazer checkout do código do repositório
+        uses: actions/checkout@v4
+      - run: echo "💡 O repositório ${{ github.repository }} foi clonado para o runner."
+      - run: echo "🖥️ O workflow está agora pronto para testar seu código no runner."
+      
+      - name: Listar arquivos no repositório
+        run: |
+          ls ${{ github.workspace }}
+
+      - name: Configurar ambiente Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - run: echo "Node.js foi configurado!"
+
+
+      - name: Executar script
+        run: |
+          echo "Criando um arquivo de log..."
+          echo "Este é um arquivo de log criado durante a execução do workflow do GitHub Actions." > meu_arquivo_de_log.txt
+          echo "Arquivo de log criado com sucesso."
+      
+      - name: Listar arquivos após o script personalizado
+        run: |
+          ls ${{ github.workspace }}
+
+      - run: echo "🍏 O status deste job é ${{ job.status }}."
